@@ -26,17 +26,62 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="hero-unit-custom">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Sass</li>
-        <li>Modernizr</li>
-      </ul>
-      <p> test button </p>
+    <div class="container">
 
-      <a class="waves-effect waves-light btn">Stuff</a>
+      <h1 class="header center ">µQuiz</h1>
+
+      <h6 class="center formatreminder">
+        <a class="modal-trigger" href="#formatreminder">how to format json quiz</a>
+      </h6>
+
+      <div id="formatreminder" class="modal">
+       <div class="modal-content">
+         <h4 class="center">Example quiz json</h4>
+         <script src="https://gist.github.com/swarage/cdeed7ad3ce77651dfca.js"></script>
+       </div>
+     </div>
+
+      <div class="row">
+        <div class="col s10">
+          <form action="#">
+            <div class="file-field input-field">
+              <input class="file-path validate" type="text"/>
+              <div class="btn">
+                <span>File</span>
+                <input type="file" id="files" name="file"/>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col s2 readBytesButtons">
+          <br><button class="waves-effect waves-light btn">Display Json</button>
+        </div>
+      </div>
+
+      <pre><code id="byte_content"></code></pre>
+
+      <div id="questions">
+        <!--<form action="#" id="swtest">
+          <h5>What is color</h3>
+          <p>
+            <input name="group1" type="radio" id="test1" />
+            <label for="test1">Red</label>
+          </p>
+          <p>
+            <input name="group1" type="radio" id="test2" />
+            <label for="test2">Yellow</label>
+          </p>
+          <p>
+            <input class="with-gap" name="group1" type="radio" id="test3"  />
+            <label for="test3">Green</label>
+          </p>
+            <p>
+              <input name="group1" type="radio" id="test4" disabled="disabled" />
+              <label for="test4">Brown</label>
+          </p>
+        </form>-->
+      </div>
+
     </div>
 
 
@@ -55,6 +100,7 @@
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/materialize/bin/materialize.js"></script>
+    <script src="/bower_components/handlebars/handlebars.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

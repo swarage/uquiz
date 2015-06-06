@@ -21,9 +21,12 @@
     "gulp-sourcemaps": "^1.3.0",
     "gulp-uglify": "^1.0.1",
     "gulp-useref": "^1.0.2",
+    "gulp-webpack": "^1.4.0",
     "jshint-stylish": "^1.0.0",
     "main-bower-files": "^2.5.0",
+    "node-libs-browser": "^0.5.2",
     "opn": "^1.0.0",
+    "webpack": "^1.9.10",
     "wiredep": "^2.0.0"
   }
 }

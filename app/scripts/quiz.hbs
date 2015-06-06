@@ -1,0 +1,16 @@
+<div class="center">
+  <h4>{{title}}</h4>
+  <h6>{{description}}</h6>
+</div>
+
+{{#each questions}}
+  <h6>{{title}}</h6>
+  <form action="#">
+    {{#each answers}}
+      <p>
+        <input type="radio" name="{{../this.title}}" id="{{../this.title}}{{@index}}">
+        <label for="{{../this.title}}{{@index}}">{{this}}</label>
+      </p>
+    {{/each}}
+  </form>
+{{/each}}
