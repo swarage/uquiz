@@ -1,7 +1,8 @@
 /* jshint devel:true */
 
+'use strict';
+
 var filereader = require('./filereader.js');
-var jsontohtml = require('./jsontohtml.js');
 
 //initialize the modal
 $(document).ready(function(){
@@ -9,6 +10,6 @@ $(document).ready(function(){
 });
 
 //adding the event listener to the button
-$('.readBytesButtons').click(function(evt) {
+$('.readBytesButtons').click(function() {
   filereader.readFile();
 });
