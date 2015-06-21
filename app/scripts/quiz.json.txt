@@ -1,0 +1,25 @@
+{
+   "title": "title of quiz",
+   "description": "this is a quiz",
+   "questions": [
+     {
+       "title": "title of question",
+       "answers": [
+         "yes",
+         "no",
+         "possibly",
+         "maybe"
+       ]
+     },
+     {
+       "title": "second question",
+       "answers": [
+         "dos",
+         "duo",
+         "double trouble",
+         "two"
+       ]
+     }
+    ],
+  "answers": ["A", "D"]
+ }
