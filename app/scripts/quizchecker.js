@@ -27,6 +27,3 @@ module.exports = {
     return answArr;
 	}
 };
-
-//var myRadio = $('input[name=myRadio]');
-//var checkedValue = myRadio.filter(':checked').val();

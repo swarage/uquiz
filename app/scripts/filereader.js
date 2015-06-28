@@ -25,7 +25,6 @@ module.exports = {
     // If we use onloadend, we need to check the readyState.
     reader.onloadend = function(evt) {
       if (evt.target.readyState === FileReader.DONE) { // DONE == 2
-        //$('#byte_content').text(evt.target.result);
         console.log('file is read');
         try {
           quiz = $.parseJSON(evt.target.result);

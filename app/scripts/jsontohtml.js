@@ -106,15 +106,6 @@ module.exports = {
         //check the submitted answers with the answers given by the JSON file
         //and re-render the html with the correct/incorrect answers
         $('#submit').click(function(){
-          /*
-          
-          for (i = 0; i < quiz.questions.length; i++) {
-            quiz.questions[i].iscorrect = answers[i][0];
-            quiz.questions[i].answered = answers[i][1];
-          }
-          generatedHtml = template(quiz);
-          $('#questions').html(generatedHtml);
-          */
           var answers = quizChecker.checkQuiz(quiz);
           var titles = $('#questions h6');
           for(i = 0; i < titles.length; i++) {
