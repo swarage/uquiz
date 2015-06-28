@@ -2,12 +2,16 @@
 
 'use strict';
 
+var quizChecker = require('./quizchecker.js');
+
 var isProperQuiz = function(quiz) {
 
   if (quiz === undefined) {
     console.log('no quiz');
     return false;
   }
+
+  var i;
 
   //check to see if the title is actually a title
   if (quiz.title === undefined || typeof quiz.title !== 'string') {
@@ -26,7 +30,7 @@ var isProperQuiz = function(quiz) {
     console.log('no questions');
     return false;
   } else {
-    for (var i = 0; i < quiz.questions.length; i++) {
+    for (i = 0; i < quiz.questions.length; i++) {
       var question = quiz.questions[i];
       console.log(typeof question.title + ': ' + question.title);
       if (!question.title || typeof question.title !== 'string') {
@@ -45,7 +49,7 @@ var isProperQuiz = function(quiz) {
     console.log('no answer array');
     return false;
   } else {
-    for (var i = 0; i < quiz.answers.length; i++) {
+    for (i = 0; i < quiz.answers.length; i++) {
       var answer = quiz.answers[i];
       if (['A', 'B', 'C', 'D'].indexOf(answer) < 0) {
         console.log('not letters');
@@ -59,10 +63,20 @@ var isProperQuiz = function(quiz) {
 
 };
 
+//register a helper to check for equality because handlebars does not come with logical operators
+Handlebars.registerHelper('ifSame', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 module.exports = {
   jsonToHTML: function(quiz) {
 
-    console.log(quiz);
+    var i;
+
+    //console.log(quiz);
     //var quizjson = $.parseJSON(quiz);
     var generatedHtml = '';
 
@@ -75,20 +89,46 @@ module.exports = {
       return;
     } else {
       $.get('scripts/quiz.hbs', function (data) {
+        //compile the handlebars template, but passed in the condensed titles to create valid ids
+        //in addition, clear the answered questions so there aren't any prefilled answers
         var template = Handlebars.compile(data);
+        for (i = 0; i < quiz.questions.length; i++) {
+          quiz.questions[i].condensedtitle = quiz.questions[i].title.replace(/\s/g, '');
+          quiz.questions[i].answered = '';
+        }
+
+        //console.log(quiz);
+
+        //generate the html and fill the questions div with the generated html
         generatedHtml = template(quiz);
-        console.log(generatedHtml);
         $('#questions').html(generatedHtml);
+
+        //check the submitted answers with the answers given by the JSON file
+        //and re-render the html with the correct/incorrect answers
+        $('#submit').click(function(){
+          /*
+          
+          for (i = 0; i < quiz.questions.length; i++) {
+            quiz.questions[i].iscorrect = answers[i][0];
+            quiz.questions[i].answered = answers[i][1];
+          }
+          generatedHtml = template(quiz);
+          $('#questions').html(generatedHtml);
+          */
+          var answers = quizChecker.checkQuiz(quiz);
+          var titles = $('#questions h6');
+          for(i = 0; i < titles.length; i++) {
+            if (answers[i] === 'correct') {
+              titles.eq(i).attr('id', 'correct');
+            } else {
+              titles.eq(i).attr('id', 'incorrect');
+            }
+          }
+        });
       }, 'html');
     }
 
-    //TODO for this function
-    // - generate the html for each question
-    // -- h3 for quiz title
-    // -- h5 for description
-    // -- p for question title
-    // -- radio boxes for answers
-    // -- submit button towards bottom, cleared every time
+    
 
   }
 };
