@@ -88,7 +88,7 @@ module.exports = {
       $('#questions').html('<h4> this quiz is invalid! </h4>');
       return;
     } else {
-      $.get('scripts/quiz.hbs', function (data) {
+      $.get('quiz.hbs', function (data) {
         //compile the handlebars template, but passed in the condensed titles to create valid ids
         //in addition, clear the answered questions so there aren't any prefilled answers
         var template = Handlebars.compile(data);

@@ -1,0 +1,19 @@
+<div class="center">
+  <h4>{{title}}</h4>
+  <h5>{{description}}</h5>
+</div>
+
+{{#each questions}}
+  <h6>{{title}}</h6>
+  <form action="#">
+    {{#each answers}}
+      <p>
+        <input type="radio" name="{{../this.condensedtitle}}" id="{{../this.condensedtitle}}{{@index}}">
+        <label for="{{../this.condensedtitle}}{{@index}}">{{this}}</label>
+      </p>
+    {{/each}}
+  </form>
+{{/each}}
+<br>
+
+<a class="waves-effect waves-light btn" id="submit">Stuff</a><br>
